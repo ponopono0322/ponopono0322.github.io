@@ -12,5 +12,5 @@ main:
   #   url: /sitemap/
   - title: "Main"
     url: https://ponopono0322.github.io/
-  - title: "ML"
-    url: /ML/
+  - title: "Categories"
+    url: /categories/
