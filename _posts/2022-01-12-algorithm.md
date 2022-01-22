@@ -92,3 +92,22 @@ aabbcc, xxyybb => 8
 공통인 부분을 Counter를 사용해 사전형태로 구해서 차집합을 구한다.
 sum((Counter(x)-Counter(y)).values())
 ```
+
+## 리스트
+### [5397] 키로커
+목표: 조건에 맞게 비밀번호(문자열)를 구하라
+```
+// 예시
+<<BP<A>>Cd-   =>    BAPC
+ThIsIsS3Cr3t  =>    ThIsIsS3Cr3t
+```
+
+```
+// 해석
+키보드 방향키 입력값 <>을 기준으로 각각 배열(left, right)을 만들어서 저장, 출력
+
+>일 때 right 배열에 값이 있다면 pop 및 left append,
+<일 때 left 배열에 값이 있다면 pop 및 right append,
+-일 때 left 배열 pop
+==> left는 그대로, right는 reverse해서 join
+```
