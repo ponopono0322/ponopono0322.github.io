@@ -176,3 +176,24 @@ else:
 마지막으로 넣은 숫자를 저장하는 변수를 통해 push pop을 하면 된다
 ```
 
+### [2493] 탑
+목표: 수신을 받은 탑의 번호를 출력하라.
+
+```
+// 예시
+5
+6 9 5 7 4 =>  0 0 2 2 4
+```
+
+```
+// 해석
+수신을 시작한 부분의 인덱스를 가진 변수를 통해 pop push를 진행함
+
+스텍 문제에서 자주 등장하는 구조로
+for i in range(len(array))):
+    while stack and array[stack[-1]] < array[i]:
+        stack.pop()
+    stack.append(i)
+를 활용하여 푼다.
+
+```
