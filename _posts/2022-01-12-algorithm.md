@@ -5,7 +5,7 @@ excerpt: "핵심 포인트만 짚어가기"
 categories:
   - Algorithm
 tags:
-  - [Algorithm, DP]
+  - [Algorithm, DP, Array, List, Stack]
 
 toc: true
 toc_sticky: true
@@ -196,4 +196,25 @@ for i in range(len(array))):
     stack.append(i)
 를 활용하여 푼다.
 
+```
+
+### [17298] 오큰수
+목표: 자기 자신보다 큰 수가 있으면 그 수를, 큰 수가 없다면 -1을 출력
+
+```
+// 예시
+4
+3 5 2 7 =>  5 7 7 -1
+
+4
+9 5 4 8 =>  -1 8 8 -1
+```
+
+```
+// 해석
+자기 자신보다 큰 숫자가 있을 때까지 push 했다가, pop을 진행함
+
+이때 배열 크기만큼 -1로 채운 배열에 인덱스 기준으로 큰 수를 넣어줌
+arr[stack.pop()] = origin[i]
+이런식으로
 ```
