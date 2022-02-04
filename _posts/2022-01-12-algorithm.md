@@ -5,7 +5,7 @@ excerpt: "핵심 포인트만 짚어가기"
 categories:
   - Algorithm
 tags:
-  - [Algorithm, DP, Array, List, Stack]
+  - [Algorithm, DP, Array, List, Stack, BFS]
 
 toc: true
 toc_sticky: true
@@ -313,3 +313,49 @@ DD
 
 ```
 
+## BFS
+### [1926] 그림
+목표: 가장 큰 넓이를 구하라
+```
+// 예시
+6 5
+1 1 0 1 1
+0 1 1 0 0
+0 0 0 0 0
+1 0 1 1 1
+0 0 1 1 1
+0 0 1 1 1
+
+// 정답
+4
+9
+```
+
+```
+// 해석
+BFS에서 가장 큰 골조: 내 주위를 탐색
+dx, dy = [-1,1,0,1], [0,0,-1,1] => 좌표
+
+queue.append(x,y)
+while queue:
+    x, y = queue.popleft()
+
+    for i in range(4):
+        nx = x+dx
+        ny = y+dy
+        // 파이썬에서 이런 부등호가 가능하다
+        if 0 <= nx < N and 0 <= ny < M: 
+            // visited가 필요한 경우가 있고 아닌 경우도 있다
+            if graph[nx][ny] == 1 and not visited[nx][ny]:
+                visited[nx][ny] = True
+                queue.append((nx, ny))
+
+
+이후 graph[0][0]부터 탐색
+
+본 문제에서는 가장 큰 영역을 찾는 것과 영역 갯수도 구해야하므로
+
+if graph[i][j] == 1 and not visited[i][j]:
+    cnt += 1 // 영역 갯수
+    count = max(count, bfs(i, j)) // 가장 큰 영역
+```
