@@ -397,3 +397,52 @@ if graph[i][j] == 1 and not visited[i][j]:
 
 각 행의 최대값을 저장..
 ```
+
+### [4179] 불!
+목표: 불을 피해 가장자리로 이동할 수 있으면 최단 경로를, 할 수 없을 땐 IMPOSSIBLE을 출력
+
+```
+// 예시
+4 4
+####
+#JF#
+#..#
+#..#
+
+// 정답
+3
+```
+
+```
+// 해석
+불의 이동과 사람의 이동을 동시에 진행해야 한다.
+
+필요한 배열:
+1. 불과 사람의 방문 배열
+2. 불과 사람의 이동 큐
+
+불의 이동은 벽(#)이 아닌 경우만 체크하면 되지만,
+if 0 <= nx < R and 0 <= ny < C:
+    if not f_visited[nx][ny] and graph[nx][ny] != '#':
+        f_visited[nx][ny] = f_visited[x][y] + 1
+        f_queue.append((nx, ny))
+
+사람의 이동은 벽을 체크한 이후, 불이 먼저 도달하지 않았음을 확인한다.
+
+if 0 <= nx < R and 0 <= ny < C:
+    if not j_visited[nx][ny] and graph[nx][ny] != '#':
+        if not f_visited[nx][ny] or f_visited[nx][ny] > j_visited[x][y] + 1:    # important code
+            j_visited[nx][ny] = j_visited[x][y] + 1
+            j_queue.append((nx, ny))
+
+만약 끝까지 다 돌았다면 가장자리에 도달한 것이다.
+이동횟수가 담긴 결과를 출력하고
+
+else:
+    return j_visited[x][y] + 1
+
+여기서 return하지 못했다면 함수 마지막에서 불가능함을 돌려준다.
+
+return 'IMPOSSIBLE'
+```
+
