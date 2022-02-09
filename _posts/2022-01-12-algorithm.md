@@ -195,7 +195,6 @@ for i in range(len(array))):
         stack.pop()
     stack.append(i)
 를 활용하여 푼다.
-
 ```
 
 ### [17298] 오큰수
@@ -216,7 +215,6 @@ for i in range(len(array))):
 
 이때 배열 크기만큼 -1로 채운 배열에 인덱스 기준으로 큰 수를 넣어줌
 arr[stack.pop()] = origin[i]
-이런식으로
 ```
 
 ### [10799] 쇠막대기
@@ -310,7 +308,6 @@ DD
 
 해당 문제의 경우 R을 나온 수만큼 반복하면 시간 초과가 되기 때문에 R이 나온 횟수를 저장하고
 짝수의 경우와 홀수인 경우를 나눠(짝수는 앞쪽, 홀수는 뒷쪽제거) 뒤집기 연산을 최소화 한다.
-
 ```
 
 ## BFS
@@ -431,7 +428,7 @@ if 0 <= nx < R and 0 <= ny < C:
 
 if 0 <= nx < R and 0 <= ny < C:
     if not j_visited[nx][ny] and graph[nx][ny] != '#':
-        if not f_visited[nx][ny] or f_visited[nx][ny] > j_visited[x][y] + 1:    # important code
+        if not f_visited[nx][ny] or f_visited[nx][ny] > j_visited[x][y] + 1:
             j_visited[nx][ny] = j_visited[x][y] + 1
             j_queue.append((nx, ny))
 
@@ -447,7 +444,6 @@ return 'IMPOSSIBLE'
 ```
 
 ### [1697] 숨바꼭질
-
 목표: 정해진 조건(x-1, x+1, x*2)에 따라 최단으로 움직여라
 
 ```
@@ -475,4 +471,63 @@ if 0<=nx<=max_n and Narr[nx] == 0:
     que.append(nx)
 if nx == K:
     return Narr[nx]
+```
+
+### [7569] 토마토
+목표: 토마토가 다 익는데 걸리는 시간을 구하라
+
+```
+// 예시 1
+5 3 1
+0 -1 0 0 0
+-1 -1 0 1 1
+0 0 0 1 1
+
+// 예시 2
+5 3 2
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 1 0 0
+0 0 0 0 0
+
+// 예시 3
+4 3 2
+1 1 1 1
+1 1 1 1
+1 1 1 1
+1 1 1 1
+-1 -1 -1 -1
+1 1 1 -1
+
+// 정답 1,2,3(순서대로)
+-1
+4
+0
+```
+
+```
+// 해석
+앞선 1697번에서는 1차원으로 해결했다면, 이 문제는 3차원에서 수행한다.
+
+따라서 순회할 배열은 다음과 같다.
+dx = [-1,1,0,0,0,0]
+dy = [0,0,1,-1,0,0]
+dz = [0,0,0,0,1,-1]
+
+이후 순회조건에 따라 순회한 후
+if 0<=nx<h and 0<=ny<n and 0<=nz<m and array[nx][ny][nz]==0:
+    array.append([nx,ny,nz])
+    array[nx][ny][nz] = array[x][y][z]+1
+
+문제에서 요구하는 조건에 따라 출력한다.
+for i in graph:
+    for j in i:
+        if 0 in j:
+            print(-1)
+            exit(0)
+        else:
+            day = max(day,max(j))
+print(day-1)
 ```
