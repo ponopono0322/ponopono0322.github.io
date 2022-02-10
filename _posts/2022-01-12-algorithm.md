@@ -531,3 +531,47 @@ for i in graph:
             day = max(day,max(j))
 print(day-1)
 ```
+
+### [5427] 불
+목표: 불이 번지기 전에 탈출하라
+
+```
+// 예시
+1
+4 3
+####
+#*@.
+####
+
+// 정답
+2
+```
+
+```python
+# 해석
+'''방문하는 배열을 하나만 생성하고, 불의 이동을 가리키는 문구를 삽입한다
+이후 순회할때 방문한 적이 없으면서 이동 가능한 구역을 찾아 불의 이동일지 사람의 이동일지 확인한다'''
+
+# 현재 자리가 불인지 확인하는 것
+if visited[x][y] != "FIRE":
+    flag = visited[x][y]
+else:
+    flag = "FIRE"
+
+# 순회할 때 불의 이동인지 사람의 이동인지 판단
+if 0 <= nx < h and 0 <= ny < w:
+    if visited[nx][ny] == -1 and
+        (board[nx][ny] == "." or board[nx][ny] == "@"):
+        if flag == "FIRE":
+            visited[nx][ny] = flag
+        else:
+            visited[nx][ny] = flag + 1
+        q.append((nx, ny))
+
+# 결과를 반환하는 부분은 과거 풀이와 동일
+else:
+    if flag != "FIRE":
+        return flag + 1
+
+return "IMPOSSIBLE"
+```
