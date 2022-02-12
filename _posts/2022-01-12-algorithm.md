@@ -610,3 +610,44 @@ else:
 # 정답출력
 print(multi(A,B))
 ```
+
+### [1074] Z
+목표: 주어진 좌표를 z모양으로 탐색하라
+
+```
+// 예시
+2 3 1   =>  11
+3 7 7   =>  63
+1 0 0   =>  0
+4 7 7   =>  63
+10 511 511  =>  262143
+10 512 512  =>  786432
+```
+
+```python
+# 해석
+'''
+z 순회 단위가 2씩 커지므로 크기를 2, 4, 8.. 즉 2^N으로 잡는다.
+N을 재귀로 넣어 위치 상황에 따라 연산을 하도록 한다
+'''
+
+# 종료지점 설정
+if(N==0):
+    return 0
+
+# 사분면 구간 설정
+half = 2**(N-1)
+
+# 위치에 따른 계산식
+if(r < half and c < half):
+    return re(N-1, r, c)
+if(r < half and c >= half):
+    return half*half + re(N-1, r, c-half)
+if(r >= half and c < half):
+    return 2*half*half + re(N-1, r-half, c)
+
+return 3*half*half + re(N-1, r-half, c-half)
+
+# 결과 출력
+print(re(N,r,c))
+```
