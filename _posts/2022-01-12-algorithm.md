@@ -797,3 +797,60 @@ elif check == 1:
 else:
     print(0, end='')
 ```
+
+## 백트래킹
+### [15649] [15650] [15651] N과 M
+목표: 조건에 맞게 수열을 출력하라
+```
+// 예시
+[15649]     [15650]     [15651]
+4 2         4 2         4 2
+
+// 정답
+[15649]     [15650]     [15651]
+1 2         1 2         1 1
+1 3         1 3         1 2
+1 4         1 4         1 3
+2 1         2 3         1 4
+2 3         2 4         2 1
+2 4         3 4         2 2
+3 1                     2 3
+3 2                     2 4
+3 4                     3 1
+4 1                     3 2
+4 2                     3 3
+4 3                     3 4
+                        4 1
+                        4 2
+                        4 3
+                        4 4
+```
+
+```python
+# dfs 사용해서 푸는 것이 원칙이나..
+'''
+파이썬 itertools 패키지에서 순열관련 함수를 제공하기 때문에
+product, combinations, permutations을 사용하여 풀었다
+'''
+
+# 공통부분
+from itertools import product, combinations, permutations
+
+# 배열 생성(combinations, permutations)
+arr = [i for i in range(1, N+1)]
+# 배열 생성(product)
+arr = []
+for i in range(M):
+    tmp =""
+    for j in range(1, N+1):
+        tmp+=str(j)
+    arr.append(tmp)
+
+# 결과 출력
+for x in combinations(arr, M): # (combinations, permutations)
+    print(*x) 
+
+# 결과 출력
+for x in product(*arr):
+    print(*x)
+```
