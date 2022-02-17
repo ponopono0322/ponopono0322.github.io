@@ -827,7 +827,7 @@ else:
 ```
 
 ```python
-# dfs 사용해서 푸는 것이 원칙이나..
+# dfs 사용해서 푸는 것이 맞지만..
 '''
 파이썬 itertools 패키지에서 순열관련 함수를 제공하기 때문에
 product, combinations, permutations을 사용하여 풀었다
@@ -853,4 +853,39 @@ for x in combinations(arr, M): # (combinations, permutations)
 # 결과 출력
 for x in product(*arr):
     print(*x)
+```
+
+### [15652] N과 M
+목표: 조건에 맞게 수열을 출력하라
+```
+// 예시
+4 2
+
+// 정답
+1 1
+1 2
+1 3
+1 4
+2 2
+2 3
+2 4
+3 3
+3 4
+4 4
+```
+
+```python
+# dfs를 이용한 재귀로 풀었다
+
+# 재귀를 끝낼 부분
+if len(s)==m:
+    print(' '.join(map(str,s)))
+    return
+
+# 반복하는 부분
+for i in range(start, n+1):
+    s.append(i)
+    dfs(i)
+    s.pop()
+    
 ```
