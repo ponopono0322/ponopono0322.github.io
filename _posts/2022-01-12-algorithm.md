@@ -889,3 +889,25 @@ for i in range(start, n+1):
     s.pop()
     
 ```
+
+### [6603] 로또
+목표: 입력받은 숫자 배열중 6개를 뽑아 중복되지 않는 조합을 구하라
+
+```
+// 예시(정답은 매우 길어서 생략)
+7 1 2 3 4 5 6 7
+8 1 2 3 5 8 13 21 34
+0 (0을 받으면 종료)
+
+```
+
+```python
+# combinations를 사용해서 가볍게 푼다
+
+# 배열을 받고
+arr = list(map(int, input().split()[1:]))
+
+# 출력
+for i in combinations(arr, 6):
+    print(*i)
+```
