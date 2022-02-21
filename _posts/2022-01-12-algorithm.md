@@ -5,7 +5,7 @@ excerpt: "핵심 포인트만 짚어가기"
 categories:
   - Algorithm
 tags:
-  - [Algorithm, DP, Array, List, Stack, BFS]
+  - [Algorithm, DP, Array, List, Stack, BFS, DP]
 
 toc: true
 toc_sticky: true
@@ -910,4 +910,34 @@ arr = list(map(int, input().split()[1:]))
 # 출력
 for i in combinations(arr, 6):
     print(*i)
+```
+
+## DP
+
+### [1932] 정수 삼각형
+목표: 정해진 조건(대각선 좌,우 아래)에 의한 최대값을 구하라
+
+```
+// 예시
+5
+7
+3 8
+8 1 0
+2 7 4 4
+4 5 2 6 5   => 30
+```
+
+```python
+# 해석: 이전 결과중 최대를 갖으면서 조건에 맞게 순회하는 방식
+
+# 1번째는 1개이므로 생략, 2번째부터 순회
+k = 2
+for j in range(k):
+    if j == 0:
+        t[i][j] = t[i][j] + t[i - 1][j]
+    elif i == j:
+        t[i][j] = t[i][j] + t[i - 1][j - 1]
+    else:
+        t[i][j] = max(t[i - 1][j - 1], t[i - 1][j]) + t[i][j]
+k += 1  # 피라미드 구조라 매 루프마다 순회량을 증가시키는 것이 핵심
 ```
